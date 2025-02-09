@@ -1,6 +1,7 @@
 import 'package:booksphere/features/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'constants.dart';
 
 void main() {
   runApp(const BookSphereApp());
@@ -10,8 +11,10 @@ class BookSphereApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const  GetMaterialApp(
-      home: SplashScreen(),
+    return   GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData().copyWith(scaffoldBackgroundColor: kPrimaryColor ),
+      home: const  SplashScreen(),
     );
   }
 }
