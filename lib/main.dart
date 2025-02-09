@@ -13,7 +13,7 @@ class BookSphereApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return   GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData().copyWith(scaffoldBackgroundColor: kPrimaryColor ),
+      theme: ThemeData.dark(),
       home: const  SplashScreen(),
     );
   }
