@@ -1,5 +1,8 @@
+import 'package:booksphere/constants.dart';
 import 'package:booksphere/core/utils/assets.dart';
+import 'package:booksphere/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -17,19 +20,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     super.initState();
 
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 2), 
-    )..forward(); 
-
-    slidingAnimation = Tween<Offset>(
-      begin: const Offset(0, 2),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: animationController,
-      curve: Curves.easeOut, 
-    ));
+    InitSlidingAnimation();
+    NavigateToHome();
   }
+
+  
 
   @override
   void dispose() {
@@ -47,16 +42,38 @@ class _SplashViewBodyState extends State<SplashViewBody>
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Image.asset(AssetsData.logo),
         ),
-        const SizedBox(height: 20), 
+        const SizedBox(height: 20),
         SlideTransition(
           position: slidingAnimation,
           child: const Text(
             'Explore. Read. Enjoy',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 15, ),
+            style: TextStyle(
+              fontSize: 15,
+            ),
           ),
         ),
       ],
     );
+  }
+
+  void InitSlidingAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..forward();
+
+    slidingAnimation = Tween<Offset>(
+      begin: const Offset(0, 2),
+      end: Offset.zero,
+    ).animate(CurvedAnimation(
+      parent: animationController,
+      curve: Curves.easeOut,
+    ));
+  }
+  void NavigateToHome() {
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.to(const HomeView(), transition: Transition.fade, duration: kTransitionDuration );
+    });
   }
 }
