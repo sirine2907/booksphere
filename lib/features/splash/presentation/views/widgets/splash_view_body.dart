@@ -19,15 +19,15 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2), // Reduced to 2 seconds
-    )..forward(); // Start the animation automatically
+      duration: const Duration(seconds: 2), 
+    )..forward(); 
 
     slidingAnimation = Tween<Offset>(
       begin: const Offset(0, 2),
       end: Offset.zero,
     ).animate(CurvedAnimation(
       parent: animationController,
-      curve: Curves.easeOut, // Smooth transition
+      curve: Curves.easeOut, 
     ));
   }
 
@@ -47,7 +47,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
           child: Image.asset(AssetsData.logo),
         ),
-        const SizedBox(height: 20), // Added spacing for better layout
+        const SizedBox(height: 20), 
         SlideTransition(
           position: slidingAnimation,
           child: const Text(
